@@ -40,7 +40,13 @@ function generateHtmlTable(data) {
 			html += '<div>';
 			$.each(row, function( index, colData ) {
 				html += '<p>';
+				if(index===0){
+					html += '<b>';
+				}
 				html += colData;
+				if(index===0){
+					html += '</b>';
+				}
 				html += '</p>';
 			});
 			html += '</div>';
