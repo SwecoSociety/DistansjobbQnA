@@ -1,31 +1,23 @@
-function csvJSON(csv){
-
-	var lines=csv.split("\n");
- 
-	var result = [];
- 
-	// NOTE: If your columns contain commas in their values, you'll need
-	// to deal with those before doing the next step 
-	// (you might convert them to &&& or something, then covert them back later)
-	// jsfiddle showing the issue https://jsfiddle.net/
-	var headers=lines[0].split(",");
- 
-	for(var i=1;i<lines.length;i++){
- 
-		 var obj = {};
-		 var currentline=lines[i].split(",");
- 
-		 for(var j=0;j<headers.length;j++){
-			  obj[headers[j]] = currentline[j];
-		 }
- 
-		 result.push(obj);
- 
-	}
- 
-	//return result; //JavaScript object
-	return JSON.stringify(result); //JSON
- }
+// Return array of string values, or NULL if CSV string not well formed.
+function CSVtoArray(text) {
+	var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+	var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+	// Return NULL if input string is not well formed CSV string.
+	if (!re_valid.test(text)) return null;
+	var a = [];                     // Initialize array to receive values.
+	text.replace(re_value, // "Walk" the string using replace with callback.
+		 function(m0, m1, m2, m3) {
+			  // Remove backslash from \' in single quoted values.
+			  if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+			  // Remove backslash from \" in double quoted values.
+			  else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+			  else if (m3 !== undefined) a.push(m3);
+			  return ''; // Return empty string.
+		 });
+	// Handle special case of empty last value.
+	if (/,\s*$/.test(text)) a.push('');
+	return a;
+};
 
 function generateHtmlTable(data) {
 	var html = '<div class="container">';
@@ -67,8 +59,7 @@ $(document).ready(function() {
 		//$( ".result" ).html( data );
 		console.log(csv)
 		//alert( "Load was performed." );
-		json = csvJSON(csv)//$.csv.toObjects(csv)
-		data = JSON.parse(json)
+		data = CSVtoArray(csv)//$.csv.toObjects(csv)
 		generateHtmlTable(data)
 		});
 	});
