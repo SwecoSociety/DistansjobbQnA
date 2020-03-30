@@ -1,31 +1,21 @@
-function csvJSON(csv){
-
-	var lines=csv.split("\n");
- 
-	var result = [];
- 
-	// NOTE: If your columns contain commas in their values, you'll need
-	// to deal with those before doing the next step 
-	// (you might convert them to &&& or something, then covert them back later)
-	// jsfiddle showing the issue https://jsfiddle.net/
-	var headers=lines[0].split(",");
- 
-	for(var i=1;i<lines.length;i++){
- 
-		 var obj = {};
-		 var currentline=lines[i].split(",");
- 
-		 for(var j=0;j<headers.length;j++){
-			  obj[headers[j]] = currentline[j];
-		 }
- 
-		 result.push(obj);
- 
+function processData(allText) {
+	var rows = allText.split(/\r\n|\n/);
+	//var headers = rows[0].split(',');
+	data = []
+	for (var i=1; i<rows.length; i++) {
+		var row = rows[i].split('	');
+		data.push(row)
+		/*if (data.length == headers.length) {
+			var tarr = [];
+			for (var j=0; j<headers.length; j++) {
+				tarr.push(headers[j]+":"+data[j]);
+			}
+			lines.push(tarr);
+		}*/
 	}
- 
-	//return result; //JavaScript object
-	return JSON.stringify(result); //JSON
- }
+	// alert(lines);
+	return data;
+}
 
 function generateHtmlTable(data) {
 	var html = '<div class="container">';
@@ -63,12 +53,11 @@ function generateHtmlTable(data) {
 }	
 
 $(document).ready(function() {
-	$.get( "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEnQLr27BEw356nJFgxk6iMdCq53DLXiWEV-LdNZks6wXMNLqp1RlT_n1tIwg1v7avYZDdIkY-Viwq/pub?gid=0&single=true&output=json", function( csv ) {
+	$.get( "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEnQLr27BEw356nJFgxk6iMdCq53DLXiWEV-LdNZks6wXMNLqp1RlT_n1tIwg1v7avYZDdIkY-Viwq/pub?gid=0&single=true&output=tsv", function( csv ) {
 		//$( ".result" ).html( data );
 		console.log(csv)
 		//alert( "Load was performed." );
-		json = csvJSON(csv)//$.csv.toObjects(csv)
-		data = JSON.parse(json)
-		generateHtmlTable(csv)
+		data = processData(csv)//$.csv.toObjects(csv)
+		generateHtmlTable(data)
 		});
 	});
