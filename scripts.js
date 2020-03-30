@@ -20,10 +20,9 @@ function processData(allText) {
 
 function generateHtmlTable(data) {
 	var html = '<div class="container">';
-		if(typeof(data[0]) === 'undefined') {
-			return null;
-		} else {
-		
+	if(typeof(data[0]) === 'undefined') {
+		return null;
+	} else {
 		$.each(data, function( index, row ) {
 			//bind header
 			/*if(index == 0) {
@@ -51,8 +50,8 @@ function generateHtmlTable(data) {
 		html += '</div>';
 		//alert(html);
 		$('body').append(html);
-		}
-	}	
+	}
+}	
 
 $(document).ready(function() {
 	$.get( "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEnQLr27BEw356nJFgxk6iMdCq53DLXiWEV-LdNZks6wXMNLqp1RlT_n1tIwg1v7avYZDdIkY-Viwq/pub?gid=0&single=true&output=csv", function( csv ) {
