@@ -10,7 +10,7 @@ function tsvToArray(allText) {
 }
 
 function generateHtmlTable(data) {
-	var html = '<div class="container">';
+	var html = '<div class="container"><h1>Frågor och svar rörande distansarbete</h1>';
 	if(typeof(data[0]) === 'undefined') {
 		return null;
 	} else {
