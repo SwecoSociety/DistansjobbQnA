@@ -26,7 +26,7 @@ function generateHtmlTable(data) {
 		
 		$.each(data, function( index, row ) {
 			//bind header
-			if(index == 0) {
+			/*if(index == 0) {
 			html += '<thead>';
 			html += '<tr>';
 			$.each(row, function( index, colData ) {
@@ -37,15 +37,15 @@ function generateHtmlTable(data) {
 			html += '</tr>';
 			html += '</thead>';
 			html += '<tbody>';
-			} else {
+			} else {*/
 			html += '<tr>';
 			$.each(row, function( index, colData ) {
-				html += '<td>';
+				html += '<tr>';
 				html += colData;
-				html += '</td>';
+				html += '</tr>';
 			});
 			html += '</tr>';
-			}
+			//}
 		});
 		html += '</tbody>';
 		html += '</table>';
