@@ -19,7 +19,7 @@ function processData(allText) {
 }
 
 function generateHtmlTable(data) {
-	var html = '<table class="table table-condensed table-hover table-striped">';
+	var html = '<div class="container">';
 		if(typeof(data[0]) === 'undefined') {
 			return null;
 		} else {
@@ -38,17 +38,17 @@ function generateHtmlTable(data) {
 			html += '</thead>';
 			html += '<tbody>';
 			} else {*/
-			html += '<tr>';
+			
+			html += '<div>';
 			$.each(row, function( index, colData ) {
-				html += '<tr>';
+				html += '<p>';
 				html += colData;
-				html += '</tr>';
+				html += '</p>';
 			});
-			html += '</tr>';
+			html += '</div>';
 			//}
 		});
-		html += '</tbody>';
-		html += '</table>';
+		html += '</div>';
 		//alert(html);
 		$('body').append(html);
 		}
