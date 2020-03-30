@@ -34,10 +34,11 @@ function generateHtmlTable(data) {
   }	
 
 $(document).ready(function() {
-	$.get( "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEnQLr27BEw356nJFgxk6iMdCq53DLXiWEV-LdNZks6wXMNLqp1RlT_n1tIwg1v7avYZDdIkY-Viwq/pub?gid=0&single=true&output=csv", function( data ) {
-	//$( ".result" ).html( data );
-	console.log(data)
-	//alert( "Load was performed." );
-	generateHtmlTable(data)
+	$.get( "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEnQLr27BEw356nJFgxk6iMdCq53DLXiWEV-LdNZks6wXMNLqp1RlT_n1tIwg1v7avYZDdIkY-Viwq/pub?gid=0&single=true&output=csv", function( csv ) {
+		//$( ".result" ).html( data );
+		console.log(csv)
+		//alert( "Load was performed." );
+		data = $.csv.toObjects(csv)
+		generateHtmlTable(data)
 		});
 	});
