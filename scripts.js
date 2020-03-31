@@ -18,13 +18,13 @@ function generateHtmlTable(data) {
 			html += '<div class="QnA">';
 			$.each(row, function( index, colData ) {
 				if(index===0){
-					html += '<h6>';
+					html += '<h5>';
 				} else{
 					html += '<p>';
 				}
 				html += colData;
 				if(index===0){
-					html += '</h6>';
+					html += '</h5>';
 				} else {
 					html += '</p>';
 				}
