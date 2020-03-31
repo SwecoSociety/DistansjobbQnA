@@ -14,13 +14,12 @@ function generateHtmlTable(data) {
 	if(typeof(data[0]) === 'undefined') {
 		return null;
 	} else {
-		$.each(data, function( index, row ) {
-			
-			html += '<br><div class="QnA" id="' + row[0].replace(/[^a-zA-Z0-9]/g,'').toLowerCase() + '"><h5>';
+		$.each(data, function( rowIdx, row ) {
+			html += '<br><div class="QnA" id="qna-' + rowIdx + '"><h5>';
 			html += row[0]
 			html += '</h5>'
-			$.each(row, function( index, colData ) {
-				if(index>0){
+			$.each(row, function( colIdx, colData ) {
+				if(colIdx>0){
 					html += '<p>' + colData + '</p>';
 				}
 			});
