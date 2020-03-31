@@ -15,7 +15,7 @@ function generateHtmlTable(data) {
 		return null;
 	} else {
 		$.each(data, function( index, row ) {
-			html += '<br><div class="QnA"><h5>';
+			html += '<br><div class="QnA" id="' + row[0].replace(/[^a-zA-Z0-9]/g,''); + '"><h5>';
 			html += row[0]
 			html += '</h5>'
 			$.each(row, function( index, colData ) {
