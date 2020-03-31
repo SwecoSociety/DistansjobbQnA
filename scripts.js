@@ -10,7 +10,7 @@ function tsvToArray(allText) {
 }
 
 function generateHtmlTable(data) {
-	var html = '<div class="container"><h1>Frågor och svar rörande distansarbete</h1>';
+	var html = '';
 	if(typeof(data[0]) === 'undefined') {
 		return null;
 	} else {
@@ -30,8 +30,7 @@ function generateHtmlTable(data) {
 			});
 			html += '</div>';
 		});
-		html += '</div>';
-		$('body').append(html);
+		$('#alla_fragor_och_svar').append(html);
 	}
 }	
 
