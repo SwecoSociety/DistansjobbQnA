@@ -18,7 +18,7 @@ function generateHtmlTable(data) {
 			html += '<div class="QnA">';
 			$.each(row, function( index, colData ) {
 				if(index===0){
-					html += '<h5>';
+					html += '<br><h5>';
 				} else{
 					html += '<p>';
 				}
