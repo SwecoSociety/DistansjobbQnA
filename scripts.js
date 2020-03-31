@@ -21,11 +21,7 @@ function generateHtmlTable(data) {
 			html += '</h5>'
 			$.each(row, function( index, colData ) {
 				if(index>0){
-					html += '<p>';
-				}
-				html += colData;
-				if(index>0){
-					html += '</p>';
+					html += '<p>' + colData + '</p>';
 				}
 			});
 			html += '</div>';
