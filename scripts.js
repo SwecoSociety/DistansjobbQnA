@@ -17,16 +17,17 @@ function generateHtmlTable(data) {
 		$.each(data, function( index, row ) {
 			html += '<div class="QnA">';
 			$.each(row, function( index, colData ) {
-				html += '<p>';
 				if(index===0){
-					
-					html += '<br><b>';
+					html += '<h6>';
+				} else{
+					html += '<p>';
 				}
 				html += colData;
 				if(index===0){
-					html += '</b>';
+					html += '</h6>';
+				} else {
+					html += '</p>';
 				}
-				html += '</p>';
 			});
 			html += '</div>';
 		});
