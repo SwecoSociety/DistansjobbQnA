@@ -15,17 +15,15 @@ function generateHtmlTable(data) {
 		return null;
 	} else {
 		$.each(data, function( index, row ) {
-			html += '<div class="QnA">';
+			html += '<br><div class="QnA"><h5>';
+			html += row[0]
+			html += '</h5>'
 			$.each(row, function( index, colData ) {
-				if(index===0){
-					html += '<br><h5>';
-				} else{
+				if(index>0){
 					html += '<p>';
 				}
 				html += colData;
-				if(index===0){
-					html += '</h5>';
-				} else {
+				if(index>0){
 					html += '</p>';
 				}
 			});
