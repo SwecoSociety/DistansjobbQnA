@@ -37,10 +37,4 @@ $(document).ready(function() {
 		data = tsvToArray(tsv)//$.tsv.toObjects(tsv)
 		generateHtmlTable(data)
 		});
-	$("#search_filter").on("keyup", function() {
-		var value = $(this).val().toLowerCase();
-		$("#alla_fragor_och_svar .qna").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-		});
 	});
-});
